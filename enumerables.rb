@@ -72,14 +72,13 @@ module Enumerable
         count += 1 if ar[i] == lit
         i += 1
       end
-      count
     else
       while i < ar.size
         count += 1 if yield(ar[i])
         i += 1
       end
-      count
     end
+    count
   end
 
   def my_map(&proc)
