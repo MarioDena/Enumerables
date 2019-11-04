@@ -63,20 +63,16 @@ module Enumerable
     true
   end
 
-  def my_count(num = '')
+  def my_count(lit = "")
     ar = self
     if block_given? == false
-      if num == ''
-        ar.size
-      else
-        i = 0
-        count = 0
-        while i < ar.size
-          count += 1 if ar[i] == num
-          i += 1
-        end
-        count
+      i = 0
+      count = 0
+      while i < ar.size
+        count += 1 if ar[i] == lit
+        i += 1
       end
+      count
     else
       i = 0
       count = 0
@@ -133,7 +129,7 @@ testing_any = %w[testing this theme].my_any? { |x| x[0] == 'x' }
 p testing_any
 testing_none = %w[testing this theme].my_none? { |x| x[0] == 'x' }
 p testing_none
-test_count = [0, 1, 2, 3, 4].my_count { |i| i > 1 }
+test_count = [0, 1, 2, 3, 4].my_count(3)
 p test_count
 test_map = [1, 2, 3, 4, 5].my_map { |i| i * 4 }
 p test_map
