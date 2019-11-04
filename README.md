@@ -15,7 +15,7 @@ Including:
 * map
 * inject
 
-`Testing suite` has some general testing calls and are freely customizable
+Under `Testing suite` you will find some general testing calls freely customizable
 
 # By
 
