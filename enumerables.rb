@@ -104,12 +104,12 @@ module Enumerable
   def my_inject(origin = 0)
     i = 0
     ar = self
-    injectorResult = origin
+    injector_result = origin
     while i < ar.size
-      injectorResult = yield(injectorResult, ar[i])
+      injectorResult = yield(injector_result, ar[i])
       i += 1
     end
-    injectorResult
+    injector_result
   end
 end
 
@@ -122,14 +122,14 @@ end
 ## Proc for proc map method
 my_proc = proc { |i| i * 4 }
 
-[1, 2, 3, 4].my_each { |_x| puts "working #{_x}" }
+[1, 2, 3, 4].my_each { |x| puts "working #{x}" }
 [1, 2, 3, 4].my_each_with_index { |x, y| puts "#{x} at index #{y}" }
 p [1, 2, 3, 4].my_select(&:even?)
-p %w[testing this theme].my_all? { |x| x[0] == 't' }
-p %w[testing this theme].my_any? { |x| x[0] == 'x' }
-p %w[testing this theme].my_none? { |x| x[0] == 'x' }
-p [0, 1, 2, 3, 4].my_count { |i| i > 1 }
-p [1, 2, 3, 4, 5].my_map { |i| i * 4 }
+p %w(testing this theme).my_all? { |x| x[0] == 't' }
+p %w(testing this theme).my_any? { |x| x[0] == 'x' }
+p %w(testing this theme).my_none? { |x| x[0] == 'x' }
+p ([0, 1, 2, 3, 4]).my_count { |i| i > 1 }
+p ([1, 2, 3, 4, 5]).my_map { |i| i * 4 }
 p [1, 2, 3, 4, 4, 5].my_inject(0) { |x, y| x + y }
 p multiply_els([1, 2, 3])
 
