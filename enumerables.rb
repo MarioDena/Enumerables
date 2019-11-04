@@ -63,9 +63,9 @@ module Enumerable
     true
   end
 
-  def my_count(num = '')
+  def my_count(num = 0)
     ar = self
-    if block_given? == false && num == ''
+    if block_given? == false && num == 0
       ar.size
     elsif block_given? == false
       i = 0
@@ -106,7 +106,7 @@ module Enumerable
     ar = self
     injector_result = origin
     while i < ar.size
-      injectorResult = yield(injector_result, ar[i])
+      injector_result = yield(injector_result, ar[i])
       i += 1
     end
     injector_result
@@ -125,11 +125,16 @@ my_proc = proc { |i| i * 4 }
 [1, 2, 3, 4].my_each { |x| puts "working #{x}" }
 [1, 2, 3, 4].my_each_with_index { |x, y| puts "#{x} at index #{y}" }
 p [1, 2, 3, 4].my_select(&:even?)
-p %w(testing this theme).my_all? { |x| x[0] == 't' }
-p %w(testing this theme).my_any? { |x| x[0] == 'x' }
-p %w(testing this theme).my_none? { |x| x[0] == 'x' }
-p ([0, 1, 2, 3, 4]).my_count { |i| i > 1 }
-p ([1, 2, 3, 4, 5]).my_map { |i| i * 4 }
+testing_all = %w[testing this theme].my_all? { |x| x[0] == 't' }
+p testing_all
+testing_any = %w[testing this theme].my_any? { |x| x[0] == 'x' }
+p testing_any
+testing_none = %w[testing this theme].my_none? { |x| x[0] == 'x' }
+p testing_none
+test_count = [0, 1, 2, 3, 4].my_count { |i| i > 1 }
+p test_count
+test_map = [1, 2, 3, 4, 5].my_map { |i| i * 4 }
+p test_map
 p [1, 2, 3, 4, 4, 5].my_inject(0) { |x, y| x + y }
 p multiply_els([1, 2, 3])
 
