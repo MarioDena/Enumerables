@@ -63,19 +63,17 @@ module Enumerable
     true
   end
 
-  def my_count(lit = "")
+  def my_count(lit = '')
     ar = self
+    i = 0
+    count = 0
     if block_given? == false
-      i = 0
-      count = 0
       while i < ar.size
         count += 1 if ar[i] == lit
         i += 1
       end
       count
     else
-      i = 0
-      count = 0
       while i < ar.size
         count += 1 if yield(ar[i])
         i += 1
