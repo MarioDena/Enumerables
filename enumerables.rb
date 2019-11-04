@@ -63,18 +63,20 @@ module Enumerable
     true
   end
 
-  def my_count(num = 0)
+  def my_count(num = '')
     ar = self
-    if block_given? == false && num == 0
-      ar.size
-    elsif block_given? == false
-      i = 0
-      count = 0
-      while i < ar.size
-        count += 1 if ar[i] == num
-        i += 1
+    if block_given? == false
+      if num == ''
+        ar.size
+      else
+        i = 0
+        count = 0
+        while i < ar.size
+          count += 1 if ar[i] == num
+          i += 1
+        end
+        count
       end
-      count
     else
       i = 0
       count = 0
