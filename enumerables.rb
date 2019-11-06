@@ -6,7 +6,6 @@
 # convention:Style/Documentation
 # rubocop disable Metrics/MethodLength
 
-
 module Enumerable
   def my_each
     return to_enum if block_given? == false
@@ -49,16 +48,14 @@ module Enumerable
     while i < ar.size
       if block_given? == true
         return false unless yield(ar[i])
+      elsif args.class == Class
+        return false unless ar[i].class.ancestors.include? args
+      elsif args.class == Ragexp
+        return false unless ar[i] =~ args
+      elsif args.empty? == true
+        return false unless ar[i]
       else
-        if args.class == Class
-          return false unless ar[i].class.ancestors.include? args
-        elsif args.class == Ragexp
-          return false unless ar[i] =~ args
-        elsif args.empty? == true
-          return false unless ar[i]
-        else
-          return false unless args[i] == ar[i]
-        end
+        return false unless args[i] == ar[i]
       end
 
       i += 1
@@ -72,16 +69,15 @@ module Enumerable
     while i < ar.size
       if block_given? == true
         return true if yield(ar[i])
+      elsif args.class == Class
+        return true if ar[i].class.ancestors.include? args
+      elsif args.class == Ragexp
+        return true if ar[i] =~ args
+      elsif args.empty? == true
+        return true if ar[i]
       else
-        if args.class == Class
-          return true if ar[i].class.ancestors.include? args
-        elsif args.class == Ragexp
-          return true if ar[i] =~ args
-        elsif args.empty? == true
-          return true if ar[i]
-        else
-          return true if args[i] == ar[i]
-        end
+        return true if args[i] == ar[i]
+
       end
 
       i += 1
@@ -95,16 +91,14 @@ module Enumerable
     while i < ar.size
       if block_given? == true
         return false if yield (ar[i])
+      elsif args.class == Class
+        return false if ar[i].class.ancestors.include? args
+      elsif args.class == Ragexp
+        return false if ar[i] =~ args
+      elsif args.empty? == true
+        return false if ar[i]
       else
-        if args.class == Class
-          return false if ar[i].class.ancestors.include? args
-        elsif args.class == Ragexp
-          return false if ar[i] =~ args
-        elsif args.empty? == true
-          return false if ar[i]
-        else
-          return false if args[i] == ar[i]
-        end
+        return false if args[i] == ar[i]
       end
 
       i += 1
