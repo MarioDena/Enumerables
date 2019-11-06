@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
+# convention:Style/Documentation
+# rubocop disable Metrics/MethodLength
+
 module Enumerable
   def my_each
+    return to_enum if block_given? == false
+
     i = 0
     ar = self
     while i < ar.size
@@ -11,6 +16,8 @@ module Enumerable
   end
 
   def my_each_with_index
+    return to_enum if block_given? == false
+
     i = 0
     ar = self
     while i < ar.size
@@ -20,6 +27,8 @@ module Enumerable
   end
 
   def my_select
+    return to_enum if block_given? == false
+
     i = 0
     ar = self
     array = []
@@ -30,22 +39,32 @@ module Enumerable
     array
   end
 
-  def my_all?
+  def my_all?(*args)
     i = 0
     ar = self
     while i < ar.size
-      return false unless yield(ar[i])
+      if block_given? == true
+        return false unless yield(ar[i])
+      else
+        if args.empty? == false
+          return false unless args[i] == ar[i]
+        end
+      end
 
       i += 1
     end
     true
   end
 
-  def my_any?
+  def my_any?(*args)
     i = 0
     ar = self
     while i < ar.size
-      return true if yield(ar[i])
+      if block_given? == true
+        return true if yield(ar[i])
+      else
+        return true if args[i] == ar[i]
+      end
 
       i += 1
     end
@@ -56,20 +75,28 @@ module Enumerable
     i = 0
     ar = self
     while i < ar.size
-      return false if yield (ar[i])
+      if block_given? == true
+        return false if yield (ar[i])
+      else
+        return false if args[i] == ar[i]
+      end
 
       i += 1
     end
     true
   end
 
-  def my_count(lit = '')
+  def my_count(args = '')
     ar = self
     i = 0
     count = 0
     if block_given? == false
       while i < ar.size
-        count += 1 if ar[i] == lit
+        if args != ''
+          count += 1 if ar[i] == args
+        else
+          count += 1
+        end
         i += 1
       end
     else
@@ -82,6 +109,8 @@ module Enumerable
   end
 
   def my_map(&proc)
+    return to_enum if block_given? == false
+
     i = 0
     ar = self
     array = []
@@ -96,16 +125,7 @@ module Enumerable
     array
   end
 
-  def my_inject(origin = 0)
-    i = 0
-    ar = self
-    injector_result = origin
-    while i < ar.size
-      injector_result = yield(injector_result, ar[i])
-      i += 1
-    end
-    injector_result
-  end
+  
 end
 
 ################# Testing Suite ##################
@@ -126,11 +146,13 @@ testing_any = %w[testing this theme].my_any? { |x| x[0] == 'x' }
 p testing_any
 testing_none = %w[testing this theme].my_none? { |x| x[0] == 'x' }
 p testing_none
-test_count = [0, 1, 2, 3, 4].my_count(3)
+test_count = [0, 1, 2, 3, 4].my_count
 p test_count
+p 'here'
 test_map = [1, 2, 3, 4, 5].my_map { |i| i * 4 }
 p test_map
-p [1, 2, 3, 4, 4, 5].my_inject(0) { |x, y| x + y }
+p [1, 2, 3, 4, 4, 5].my_inject(:+)
+p [1, 2, 3, 4, 4, 5].inject(:+)
 p multiply_els([1, 2, 3])
 
 # proc map method
