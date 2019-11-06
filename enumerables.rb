@@ -200,8 +200,8 @@ p test_count
 p 'here'
 test_map = [1, 2, 3, 4, 5].my_map { |i| i * 4 }
 p test_map
-p [1, 2, 3, 4, 4, 5].my_inject { |x, y| x + y }
-p [1, 2, 3, 4, 4, 5].inject { |x, y| x + y }
+p [1, 2, 3, 4, 4, 5].my_inject(:+)
+p [1, 2, 3, 4, 4, 5].inject(:+)
 p multiply_els([1, 2, 3])
 
 # proc map method
