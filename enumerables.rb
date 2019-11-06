@@ -173,10 +173,10 @@ end
 
 ################# Testing Suite ##################
 # rubocop enable Metrics/MethodLength
-# rubocop enable Metrics/BlockNesting
 # rubocop:enable Metrics/CyclomaticComplexity
 # rubocop:enable Metrics/PerceivedComplexity
 # rubocop:enable Metrics/ModuleLength
+# rubocop: enable Metrics/BlockNesting
 
 def multiply_els(array)
   array.my_inject(1) { |x, y| x * y }
