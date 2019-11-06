@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/CyclomaticComplexity
+# rubocop:disable Metrics/PerceivedComplexity
+# rubocop:disable Metrics/ModuleLength
 # convention:Style/Documentation
-# rubocop disable Metrics/MethodLength
 
 module Enumerable
   def my_each
@@ -137,9 +139,7 @@ module Enumerable
       injector_result = args[0]
       symbol = args[1]
     end
-    if args.empty?
-      injector_result = 0
-    end
+    injector_result = 0 if args.empty?
 
     while i < ar.size
       injector_result = if symbol
@@ -177,8 +177,8 @@ p test_count
 p 'here'
 test_map = [1, 2, 3, 4, 5].my_map { |i| i * 4 }
 p test_map
-p [1, 2, 3, 4, 4, 5].my_inject() { |x, y| x + y }
-p [1, 2, 3, 4, 4, 5].inject() { |x, y| x + y }
+p [1, 2, 3, 4, 4, 5].my_inject { |x, y| x + y }
+p [1, 2, 3, 4, 4, 5].inject { |x, y| x + y }
 p multiply_els([1, 2, 3])
 
 # proc map method
