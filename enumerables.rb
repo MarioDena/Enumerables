@@ -48,7 +48,13 @@ module Enumerable
       if block_given? == true
         return false unless yield(ar[i])
       else
-        if args.empty? == false
+        if args.class == Class
+          return false unless ar[i].class.ancestors.include? args
+        elsif args.class == Ragexp
+          return false unless ar[i] =~ args
+        elsif args.empty? == true
+          return false unless ar[i]
+        else
           return false unless args[i] == ar[i]
         end
       end
@@ -65,7 +71,15 @@ module Enumerable
       if block_given? == true
         return true if yield(ar[i])
       else
-        return true if args[i] == ar[i]
+        if args.class == Class
+          return true if ar[i].class.ancestors.include? args
+        elsif args.class == Ragexp
+          return true if ar[i] =~ args
+        elsif args.empty? == true
+          return true if ar[i]
+        else
+          return true if args[i] == ar[i]
+        end
       end
 
       i += 1
@@ -73,14 +87,22 @@ module Enumerable
     false
   end
 
-  def my_none?
+  def my_none?(*args)
     i = 0
     ar = self
     while i < ar.size
       if block_given? == true
         return false if yield (ar[i])
       else
-        return false if args[i] == ar[i]
+        if args.class == Class
+          return false if ar[i].class.ancestors.include? args
+        elsif args.class == Ragexp
+          return false if ar[i] =~ args
+        elsif args.empty? == true
+          return false if ar[i]
+        else
+          return false if args[i] == ar[i]
+        end
       end
 
       i += 1
