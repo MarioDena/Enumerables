@@ -179,6 +179,11 @@ module Enumerable
 end
 
 ################# Testing Suite ##################
+# rubocop enable Metrics/MethodLength
+
+# rubocop:enable Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/PerceivedComplexity
+# rubocop:enable Metrics/ModuleLength
 
 def multiply_els(array)
   array.my_inject(1) { |x, y| x * y }
