@@ -125,7 +125,33 @@ module Enumerable
     array
   end
 
-  
+  def my_inject(*args)
+    i = 0
+    ar = self
+    injector_result = 0
+    if args[1].nil? && !block_given?
+      symbol = args[0]
+    elsif args[1].nil? && block_given?
+      injector_result = args[0]
+    else
+      injector_result = args[0]
+      symbol = args[1]
+    end
+    if args.empty?
+      injector_result = 0
+    end
+
+    while i < ar.size
+      injector_result = if symbol
+                          injector_result.send(symbol, ar[i])
+                        else
+                          yield(injector_result, ar[i])
+                        end
+      i += 1
+    end
+
+    injector_result
+  end
 end
 
 ################# Testing Suite ##################
@@ -151,8 +177,8 @@ p test_count
 p 'here'
 test_map = [1, 2, 3, 4, 5].my_map { |i| i * 4 }
 p test_map
-p [1, 2, 3, 4, 4, 5].my_inject(:+)
-p [1, 2, 3, 4, 4, 5].inject(:+)
+p [1, 2, 3, 4, 4, 5].my_inject() { |x, y| x + y }
+p [1, 2, 3, 4, 4, 5].inject() { |x, y| x + y }
 p multiply_els([1, 2, 3])
 
 # proc map method
