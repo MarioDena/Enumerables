@@ -1,5 +1,12 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/CyclomaticComplexity
+# rubocop:disable Metrics/PerceivedComplexity
+# rubocop:disable Metrics/ModuleLength
+# convention:Style/Documentation
+# rubocop disable Metrics/MethodLength
+
+
 module Enumerable
   def my_each
     return to_enum if block_given? == false
