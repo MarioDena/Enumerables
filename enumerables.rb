@@ -3,7 +3,7 @@
 # rubocop:disable Metrics/CyclomaticComplexity
 # rubocop:disable Metrics/PerceivedComplexity
 # rubocop:disable Metrics/ModuleLength
-# convention:Style/Documentation
+# rubocop:disable Metrics/BlockNesting
 # rubocop disable Metrics/MethodLength
 
 module Enumerable
@@ -75,9 +75,8 @@ module Enumerable
         return true if ar[i] =~ args
       elsif args.empty? == true
         return true if ar[i]
-      else
-        return true if args[i] == ar[i]
-
+      elsif args[i] == ar[i]
+        return true
       end
 
       i += 1
@@ -97,8 +96,8 @@ module Enumerable
         return false if ar[i] =~ args
       elsif args.empty? == true
         return false if ar[i]
-      else
-        return false if args[i] == ar[i]
+      elsif args[i] == ar[i]
+        return false
       end
 
       i += 1
@@ -174,7 +173,7 @@ end
 
 ################# Testing Suite ##################
 # rubocop enable Metrics/MethodLength
-
+# rubocop enable Metrics/BlockNesting
 # rubocop:enable Metrics/CyclomaticComplexity
 # rubocop:enable Metrics/PerceivedComplexity
 # rubocop:enable Metrics/ModuleLength
