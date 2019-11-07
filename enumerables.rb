@@ -53,7 +53,7 @@ module Enumerable
         return false unless ar[i].class.ancestors.include? args
       elsif args.class == Regexp
         return false unless ar[i] =~ args
-      elsif args.mil? == true
+      elsif args.nil? == true
         return false unless ar[i]
       else
         return false unless args[i] == ar[i]
@@ -211,3 +211,6 @@ p array.my_all?(/d/) == array.all?(/d/) # false
 
 range = Range.new(5, 50)
 p range.my_inject(4) { |prod, n| prod * n }
+
+true_array = [1, true, 'hi', []]
+p true_array.my_all? == true_array.all? # false
