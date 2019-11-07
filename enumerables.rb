@@ -46,21 +46,18 @@ module Enumerable
     i = 0
     ar = self
 
-    if block_given? == true
-      return false unless yield(ar[i])
-    elsif args.class == Class
-      return false unless ar[i].class.ancestors.include? args
-    elsif args.class == Regexp
-      return false unless ar[i] =~ args
-    elsif args.mil? == true
-      return false unless ar[i]
-    else
-      return false unless args[i] == ar[i]
-    end
-
     while i < ar.size
-      
-
+      if block_given? == true
+        return false unless yield(ar[i])
+      elsif args.class == Class
+        return false unless ar[i].class.ancestors.include? args
+      elsif args.class == Regexp
+        return false unless ar[i] =~ args
+      elsif args.mil? == true
+        return false unless ar[i]
+      else
+        return false unless args[i] == ar[i]
+      end
       i += 1
     end
     true
@@ -149,7 +146,7 @@ module Enumerable
 
   def my_inject(*args)
     i = 0
-    ar = self.to_a
+    ar = to_a
     injector_result = 0
     if args[1].nil? && !block_given?
       symbol = args[0]
@@ -209,9 +206,8 @@ p multiply_els([1, 2, 3])
 # proc map method
 p [1, 2, 3, 4, 5].my_map(&my_proc)
 
-
 array = %w[dog door rod blade]
 p array.my_all?(/d/) == array.all?(/d/) # false
 
-range = Range.new(5,50)
-p range.my_inject(4) { |prod, n| prod * n } 
+range = Range.new(5, 50)
+p range.my_inject(4) { |prod, n| prod * n }
