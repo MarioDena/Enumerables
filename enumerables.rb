@@ -11,7 +11,7 @@ module Enumerable
     return to_enum(:my_each) unless block_given?
 
     i = 0
-    ar = self.to_a
+    ar = to_a
     while i < size
       yield(ar[i])
       i += 1
@@ -22,7 +22,7 @@ module Enumerable
     return to_enum if block_given? == false
 
     i = 0
-    ar = self.to_a
+    ar = to_a
     while i < ar.size
       yield(ar[i], i)
       i += 1
@@ -33,7 +33,7 @@ module Enumerable
     return to_enum if block_given? == false
 
     i = 0
-    ar = self.to_a
+    ar = to_a
     array = []
     while i < ar.size
       array << ar[i] if yield(ar[i])
@@ -44,7 +44,7 @@ module Enumerable
 
   def my_all?(args = nil)
     i = 0
-    ar = self.to_a
+    ar = to_a
 
     while i < ar.size
       if block_given? == true
@@ -65,7 +65,7 @@ module Enumerable
 
   def my_any?(args = nil)
     i = 0
-    ar = self.to_a
+    ar = to_a
     while i < ar.size
       if block_given? == true
         return true if yield(ar[i])
@@ -86,7 +86,7 @@ module Enumerable
 
   def my_none?(args = nil)
     i = 0
-    ar = self.to_a
+    ar = to_a
     while i < ar.size
       if block_given? == true
         return false if yield (ar[i])
@@ -106,7 +106,7 @@ module Enumerable
   end
 
   def my_count(args = '')
-    ar = self.to_a
+    ar = to_a
     i = 0
     count = 0
     if block_given? == false
@@ -131,7 +131,7 @@ module Enumerable
     return to_enum if block_given? == false
 
     i = 0
-    ar = self.to_a
+    ar = to_a
     array = []
     while i < ar.size
       array << if block_given?

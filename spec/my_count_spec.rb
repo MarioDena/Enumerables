@@ -17,10 +17,10 @@ RSpec.describe 'my count' do
   end
 
   it 'count the number of matches' do
-    expect(hash.my_count{|key, value| value == 'Mario'} ).to eq(1)
+    expect(hash.my_count { |_key, value| value == 'Mario' }).to eq(1)
   end
 
   it 'count the number of matches' do
-    expect(range.my_count(45) ).to eq(1)
+    expect(range.my_count(45)).to eq(1)
   end
 end
