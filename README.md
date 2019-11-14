@@ -19,7 +19,7 @@ Under `Testing suite` you will find some general testing calls freely customizab
 
 # By
 
-* [Mario Dena](https://github.com/MarioDena).
+[Denis Oluka](https://github.com/OlukaDenis) | [Mario E. Delgado](https://github.com/MarioDena)
 
 # License
 
