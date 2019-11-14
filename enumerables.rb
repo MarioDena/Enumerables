@@ -8,11 +8,11 @@
 
 module Enumerable
   def my_each
-    return to_enum if block_given? == false
+    return to_enum(:my_each) unless block_given?
 
     i = 0
-    ar = self
-    while i < ar.size
+    ar = to_a
+    while i < size
       yield(ar[i])
       i += 1
     end
@@ -22,7 +22,7 @@ module Enumerable
     return to_enum if block_given? == false
 
     i = 0
-    ar = self
+    ar = to_a
     while i < ar.size
       yield(ar[i], i)
       i += 1
@@ -33,7 +33,7 @@ module Enumerable
     return to_enum if block_given? == false
 
     i = 0
-    ar = self
+    ar = to_a
     array = []
     while i < ar.size
       array << ar[i] if yield(ar[i])
@@ -44,7 +44,7 @@ module Enumerable
 
   def my_all?(args = nil)
     i = 0
-    ar = self
+    ar = to_a
 
     while i < ar.size
       if block_given? == true
@@ -65,7 +65,7 @@ module Enumerable
 
   def my_any?(args = nil)
     i = 0
-    ar = self
+    ar = to_a
     while i < ar.size
       if block_given? == true
         return true if yield(ar[i])
@@ -75,7 +75,7 @@ module Enumerable
         return true if ar[i] =~ args
       elsif args.nil? == true
         return true if ar[i]
-      elsif args[i] == ar[i]
+      elsif args == ar[i]
         return true
       end
 
@@ -86,7 +86,7 @@ module Enumerable
 
   def my_none?(args = nil)
     i = 0
-    ar = self
+    ar = to_a
     while i < ar.size
       if block_given? == true
         return false if yield (ar[i])
@@ -106,7 +106,7 @@ module Enumerable
   end
 
   def my_count(args = '')
-    ar = self
+    ar = to_a
     i = 0
     count = 0
     if block_given? == false
@@ -131,7 +131,7 @@ module Enumerable
     return to_enum if block_given? == false
 
     i = 0
-    ar = self
+    ar = to_a
     array = []
     while i < ar.size
       array << if block_given?
@@ -178,39 +178,3 @@ end
 # rubocop:enable Metrics/ModuleLength
 # rubocop: enable Metrics/BlockNesting
 
-def multiply_els(array)
-  array.my_inject(1) { |x, y| x * y }
-end
-
-## Proc for proc map method
-my_proc = proc { |i| i * 4 }
-
-[1, 2, 3, 4].my_each { |x| puts "working #{x}" }
-[1, 2, 3, 4].my_each_with_index { |x, y| puts "#{x} at index #{y}" }
-p [1, 2, 3, 4].my_select(&:even?)
-testing_all = %w[testing this theme].my_all? { |x| x[0] == 't' }
-p testing_all
-testing_any = %w[testing this theme].my_any? { |x| x[0] == 'x' }
-p testing_any
-testing_none = %w[testing this theme].my_none? { |x| x[0] == 'x' }
-p testing_none
-test_count = [0, 1, 2, 3, 4].my_count
-p test_count
-p 'here'
-test_map = [1, 2, 3, 4, 5].my_map { |i| i * 4 }
-p test_map
-p [1, 2, 3, 4, 4, 5].my_inject(:+)
-p [1, 2, 3, 4, 4, 5].inject(:+)
-p multiply_els([1, 2, 3])
-
-# proc map method
-p [1, 2, 3, 4, 5].my_map(&my_proc)
-
-array = %w[dog door rod blade]
-p array.my_all?(/d/) == array.all?(/d/) # false
-
-range = Range.new(5, 50)
-p range.my_inject(4) { |prod, n| prod * n }
-
-true_array = [1, true, 'hi', []]
-p true_array.my_all? == true_array.all? # false
