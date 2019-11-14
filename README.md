@@ -1,7 +1,7 @@
 # Enumerables
 Enumerables project for Microverse
 
-Simple implementation of the build-in methods for enumerables
+Simple implementation of the built-in methods for enumerables
 
 Including:
 
