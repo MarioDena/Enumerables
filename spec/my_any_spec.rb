@@ -5,7 +5,6 @@ require_relative '../enumerables.rb'
 RSpec.describe 'my_any?' do
   let(:array) { [1, 2, 3, 4] }
   let(:range) { (1..875) }
-  let(:hash) { { Name: 'Mario', LastName: 'Dena' } }
   let(:t_array) { [] }
 
   it 'should return false for empty' do

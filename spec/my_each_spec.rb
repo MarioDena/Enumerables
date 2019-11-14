@@ -7,14 +7,6 @@ RSpec.describe 'my_each' do
   let(:range) { (1..875) }
   let(:hash) { { Name: 'Mario', LastName: 'Dena' } }
 
-  it 'returns enumerator for array' do
-    expect(array.my_each).to be_instance_of(Enumerator)
-  end
-
-  it 'returns enumerator for range' do
-    expect(range.my_each).to be_instance_of(Enumerator)
-  end
-
   it 'returns enumerator for hash' do
     expect(hash.my_each).to be_instance_of(Enumerator)
   end

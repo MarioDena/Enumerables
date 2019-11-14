@@ -12,14 +12,6 @@ RSpec.describe 'my Each with index' do
     expect(array.my_each_with_index).to be_instance_of(Enumerator)
   end
 
-  it 'returns enumerator for range' do
-    expect(range.my_each_with_index).to be_instance_of(Enumerator)
-  end
-
-  it 'returns enumerator for hash' do
-    expect(hash.my_each_with_index).to be_instance_of(Enumerator)
-  end
-
   it 'iterate over every value inside an array' do
     counter = 0
     array.my_each_with_index { counter += 1 }
