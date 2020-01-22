@@ -29,6 +29,7 @@ Under `Testing suite` you will find some general testing calls freely customizab
 # Validations
 
 -Stickler
+
 -Rubocop
 
 # Built With
