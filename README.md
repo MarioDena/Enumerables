@@ -1,3 +1,12 @@
+![img](https://img.shields.io/github/issues/MarioDena/Responsive-Design)
+![img2](https://img.shields.io/github/license/MarioDena/Responsive-Design)
+
+
+<p align="center">
+  <a href="https://github.com/MarioDena">
+    <img src="https://mariodena.github.io/blog/assets/img/sample/Logo.jpg" alt="Logo" width="80" height="80">
+  </a>
+
 # Enumerables
 Enumerables project for Microverse
 
@@ -16,6 +25,16 @@ Including:
 * inject
 
 Under `Testing suite` you will find some general testing calls freely customizable
+
+# Validations
+
+-Stickler
+-Rubocop
+
+# Built With
+
+`ruby` v2.6.5
+
 
 # By
 
