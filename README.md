@@ -36,7 +36,7 @@ Under `Testing suite` you will find some general testing calls freely customizab
 `ruby` v2.6.5
 
 
-# By
+# Authors
 
 [Denis Oluka](https://github.com/OlukaDenis) | [Mario E. Delgado](https://github.com/MarioDena)
 
